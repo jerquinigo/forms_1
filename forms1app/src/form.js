@@ -40,7 +40,7 @@ class Marsform extends Component {
         bachelors:false,
         masters:false,
         phd:false,
-        other:false
+        other:false,
       },
       otherTextbox:""
 
@@ -71,7 +71,7 @@ class Marsform extends Component {
           this.setState({
             [event.target.name]: newState
           })
-          console.log(event.target.checked)
+          console.log("checked", event.target.checked)
         }
         else {
           // Using es6 computed property name
@@ -344,7 +344,11 @@ if(this.state.step === 1){
                   <br />
                 <input id="other" onChange={this.handleCheckboxChange} checked={this.state.education.other} type="checkbox" name="education" value="other" />
                   <label htmlFor="education">Other</label>
-                <input onChange={this.handleChange} type="text" name="otherText"/>
+                    {this.state.education.other ?(
+                      <input onChange={this.handleChange} type="text" name="otherTextbox"/>) : null}
+
+                      <br />
+
               <br />
 
 
@@ -368,22 +372,22 @@ if(this.state.step === 1){
     <p>your diet is {diet}</p>
     <p>your reason to go to mars is: {marsReason}</p>
     <p>your message is {message}</p>
-    <p>Can you hold your breathe underwater for one min? {this.underWater}</p>
-    <p>Are you Married? {this.marital}</p>
-    <p>Are you claustrophobic? {this.claustrophobic}</p>
-    <p>Do you have Cancer? {this.state.familyHistory.cancer}</p>
-    <p>Do you have heart disease? {this.state.familyHistory.heartDisease}</p>
-    <p>Do you have diabetes? {this.state.familyHistory.diabetes}</p>
-    <p>Living Relatives Siblings: {this.state.living.siblings} Parents: {this.state.living.parents} Grandparents: {this.state.living.grandparents}</p>
+    <p>Can you hold your breathe underwater for one min? {this.state.underWater}</p>
+    <p>Are you Married? {`${this.state.marital}`}</p>
+    <p>Are you claustrophobic? {`${this.state.claustrophobic}`}</p>
+    <p>Do you have Cancer? {`${this.state.familyHistory.cancer}`}</p>
+    <p>Do you have heart disease? {`${this.state.familyHistory.heartDisease}`}</p>
+    <p>Do you have diabetes? {`${this.state.familyHistory.diabetes}`}</p>
+    <p>Living Relatives Siblings: {`${this.state.living.siblings}`} Parents: {`${this.state.living.parents}`} Grandparents: {`${this.state.living.grandparents}`}</p>
     <p>Number of Siblings: {this.state.siblingsNum} Parents: {this.state.parentsNum} Grandparents: {this.state.grandparentsNum} </p>
     <li>Highest form of education
-      <ul>Highschool: {this.state.highSchool}</ul>
-      <ul>associates: {this.state.associate}</ul>
-      <ul>Bachelors: {this.state.bachelors}</ul>
-      <ul>masters: {this.state.masters}</ul>
-      <ul>PHD: {this.state.phd}</ul>
-      <ul>other:{this.state.other}</ul>
-      <ul>other reason: {this.state.otherTextbox}</ul>
+      <ul>Highschool: {`${this.state.education.highSchool}`}</ul>
+      <ul>associates: {`${this.state.education.associate}`}</ul>
+      <ul>Bachelors: {`${this.state.education.bachelors}`}</ul>
+      <ul>masters: {`${this.state.education.masters}`}</ul>
+      <ul>PHD: {`${this.state.education.phd}`}</ul>
+      <ul>other:{`${this.state.education.other}`}</ul>
+      <ul onChange={this.handleChange}>other reason: {this.state.otherTextbox}</ul>
       </li>
     <p>is the information here correct?</p>
     <button onClick={this.confirmedSubmit}>submit</button>
